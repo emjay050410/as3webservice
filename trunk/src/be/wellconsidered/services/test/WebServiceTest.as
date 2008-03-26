@@ -1,7 +1,7 @@
 /**
 * @author Pieter Michels
 * 
-* 	new WebServiceTest();
+* new WebServiceTest();
 */
 
 package be.wellconsidered.services.test 
