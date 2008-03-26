@@ -78,7 +78,6 @@ package be.wellconsidered.services.test
 			o.addEventListener(OperationEvent.COMPLETE, onResult);
 			o.addEventListener(OperationEvent.FAILED, onFault);
 			
-			// o.getMostRecentRemixesCount();
 			o.getTopRatedRemixes(0, 10);
 		}		
 
@@ -109,17 +108,6 @@ package be.wellconsidered.services.test
 			o2.addEventListener(OperationEvent.FAILED, onFault);
 			
 			o2.GetWeatherByPlaceName("las vegas");
-		}
-		
-		public function testKULEcard():void
-		{
-			var ws:WebService = new WebService("http://www.kuleuvenecards.be/ws/service.asmx?wsdl");
-			var o:Operation = new Operation(ws);
-			
-			o.addEventListener(OperationEvent.COMPLETE, onResult);
-			o.addEventListener(OperationEvent.FAILED, onFault);
-			
-			o.SaveEcard({Language: "NL", Ecard: "test", Message: "Test message", rEmail: "pieter.michels@proximity.bbdo.be", sEmail: "pieter.michels@proximity.bbdo.be", rName: "Pieter Receiver", sName: "Pieter Sender"});
 		}			
 		
 		//*****************************************************************************************//
