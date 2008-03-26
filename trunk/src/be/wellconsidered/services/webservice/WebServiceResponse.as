@@ -26,8 +26,6 @@ package be.wellconsidered.services.webservice
 		
 		private function createResponseObject():void
 		{
-			// trace(_resp_xml);		
-			
 			var soap_nms:Namespace = _resp_xml.namespace();
 			var default_nms:Namespace = new Namespace(_method_col.targetNameSpace);
 			var body_resp_xml:XMLList = _resp_xml.soap_nms::Body.children();
@@ -82,8 +80,25 @@ package be.wellconsidered.services.webservice
 				}
 				else
 				{
-					// 1 ITEM
-					return castType(result_xmllst[0], resp_wsa.type);
+					if(result_xmllst.children().length() == 0)
+					{
+						// 1 ITEM
+						return castType(result_xmllst[0], resp_wsa.type);
+					}
+					else
+					{
+						resp_obj = _method_col.getComplexObject(resp_wsa.type);
+						
+						var tmp_a:Array = new Array();
+						
+						for(var k:int = 0; k < result_xmllst.children().length(); k++)
+						{
+							// tmp_a.push(parseXMLList(result_xmllst.children()[k].children(), resp_obj));
+							tmp_a.push(result_xmllst.children()[k]);
+						}
+						
+						return tmp_a;
+					}
 				}
 			}
 			else
@@ -93,36 +108,23 @@ package be.wellconsidered.services.webservice
 				
 				// MEERDERE PROPS
 				for(var j:int = 0; j < result_xmllst.length(); j++)
-				{
-					if(result_xmllst[j].children().length() > 1)
+				{	
+					var tmp_a_wsa:WebServiceArgument = _method_col.getComplexObjectArgument(resp_obj._args, result_xmllst[j].localName());
+					
+					if(tmp_a_wsa == null)
 					{
-						var tmp_a_wsa:WebServiceArgument = _method_col.getComplexObjectArgument(resp_obj._args, result_xmllst[j].localName());
+						arr.push(parseXMLList(result_xmllst[j].children(), resp_obj));	
+					}
+					else if(result_xmllst[j].children().length() > 1 || tmp_a_wsa.isArray())
+					{
+						var tmp_a_resp_obj:WebServiceComplexType = _method_col.getComplexObject(tmp_a_wsa.type);
 						
-						if(tmp_a_wsa == null)
-						{
-							// ARRAY					
-							arr.push(parseXMLList(result_xmllst[j].children(), resp_obj));
-						}
-						else
-						{
-							var tmp_a_resp_obj:WebServiceComplexType = _method_col.getComplexObject(tmp_a_wsa.type);
-							
-							obj[tmp_a_wsa.name] = new Array();
-							obj[tmp_a_wsa.name] = parseXMLList(result_xmllst[j].children(), tmp_a_resp_obj);
-						}
+						obj[tmp_a_wsa.name] = new Array();
+						obj[tmp_a_wsa.name] = parseXMLList(result_xmllst[j].children(), tmp_a_resp_obj);
 					}
 					else
 					{
-						var tmp_wsa:WebServiceArgument = _method_col.getComplexObjectArgument(resp_obj._args, result_xmllst[j].localName());
-						
-						if(tmp_wsa == null)
-						{
-							arr.push(parseXMLList(result_xmllst[j].children(), resp_obj));			
-						}
-						else
-						{
-							obj[tmp_wsa.name] = castType(result_xmllst[j], tmp_wsa.type);	
-						}
+						obj[tmp_a_wsa.name] = castType(result_xmllst[j], tmp_a_wsa.type);
 					}
 				}
 				

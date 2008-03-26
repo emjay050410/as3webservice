@@ -1,4 +1,4 @@
-/**
+﻿/**
 * @author Pieter Michels
 */
 
@@ -113,7 +113,8 @@ package be.wellconsidered.services.webservice
 					</soap12:Body>
 				</soap12:Envelope>
 				;
-				
+			
+			// _call.prependChild("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 			// trace(_call);
 		}
 		
