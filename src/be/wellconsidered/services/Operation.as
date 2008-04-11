@@ -74,7 +74,7 @@ package be.wellconsidered.services
 			}
 			catch (e:Error)
 			{
-				trace("ERROR: Webservice returned faulty XML");
+				trace("ERROR: Webservice returned faulty XML " + e.getStackTrace() );
 
 				dispatchEvent(new OperationEvent(OperationEvent.FAILED, e));
 			}

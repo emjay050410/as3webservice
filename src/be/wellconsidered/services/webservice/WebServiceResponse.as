@@ -148,6 +148,12 @@ package be.wellconsidered.services.webservice
 		{
 			switch(param_t.toLowerCase())
 			{
+				case "any":
+				
+					return param_o;
+				
+					break;
+					
 				case "boolean":
 					
 					return Boolean(param_o);

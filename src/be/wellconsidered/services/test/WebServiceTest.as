@@ -92,6 +92,17 @@ package be.wellconsidered.services.test
 			o.getWinners();
 		}
 		
+		public function testBondehagen():void
+		{
+			var ws:WebService = new WebService("http://tomcat.oslo.nith.no/ueltor/services/FestivalArtist?wsdl");
+			var o:Operation = new Operation(ws);
+			
+			o.addEventListener(OperationEvent.COMPLETE, onResult);
+			o.addEventListener(OperationEvent.FAILED, onFault);
+			
+			o.getArtists();
+		}
+		
 		public function testWeather():void
 		{
 			var ws:WebService = new WebService("http://www.webservicex.net/WeatherForecast.asmx?wsdl");
