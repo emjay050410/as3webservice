@@ -48,13 +48,35 @@ package be.wellconsidered.services.webservice
 				{
 					var ws_arg:WebServiceArgument = _wsmethod._args[j];
 					
-					add_node.appendChild(
-						<{ws_arg.name}>
-							{_args[j]}
-						</{ws_arg.name}>
-						);
+					if(ws_arg.isReference())
+					{
+						var cplx_oref:WebServiceComplexType =  _method_col.getComplexObject(ws_arg.type);
+						var oref_node:XML = <{ws_arg.name} />;
+						
+						for(var l:int = 0; l < cplx_oref._args.length; l++)
+						{
+							ws_arg = cplx_oref._args[l];
+							
+							oref_node.appendChild(
+								<{ws_arg.name}>
+									{_args[j][ws_arg.name]}
+								</{ws_arg.name}>
+								);							
+						}
+						
+						add_node.appendChild(oref_node);
+					}
+					else
+					{
+						add_node.appendChild(
+							<{ws_arg.name}>
+								{_args[j]}
+							</{ws_arg.name}>
+							);
+					}
 				}
 			}
+			// SINGLE OBJECT
 			else
 			{		
 				/**

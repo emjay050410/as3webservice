@@ -51,11 +51,12 @@ package be.wellconsidered.services
 
 			try
 			{
-			method_col.addEventListener(WebServiceMethodCollectionEvent.COMPLETE, onDescrExtractComplete);
-			method_col.extract(new XML(urllserv_desc.data));
+				method_col.addEventListener(WebServiceMethodCollectionEvent.COMPLETE, onDescrExtractComplete);
+				method_col.extract(new XML(urllserv_desc.data));
 			}
 			catch (err:TypeError)
 			{
+				trace(err.getStackTrace());
 				trace("WS : TypeError : " + err.message);
 				trace("WS : " + urllserv_desc.data);
 			}
@@ -91,7 +92,7 @@ package be.wellconsidered.services
 		private function executeQeuedOperations():void
 		{
 			// trace("EXECUTE QEUED OPS (" + qeue_arr.length + ")");
-
+			
 			if(qeue_arr.length > 0)
 			{
 				for(var i:int = 0; i < qeue_arr.length; i++)
