@@ -56,9 +56,9 @@ package be.wellconsidered.services
 			}
 			catch (err:TypeError)
 			{
-				trace(err.getStackTrace());
-				trace("WS : TypeError : " + err.message);
-				trace("WS : " + urllserv_desc.data);
+				// trace(err.getStackTrace());
+				// trace("WS : TypeError : " + err.message);
+				// trace("WS : " + urllserv_desc.data);
 			}
 		}
 

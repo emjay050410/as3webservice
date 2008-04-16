@@ -50,21 +50,7 @@ package be.wellconsidered.services.webservice
 					
 					if(ws_arg.isReference())
 					{
-						var cplx_oref:WebServiceComplexType =  _method_col.getComplexObject(ws_arg.type);
-						var oref_node:XML = <{ws_arg.name} />;
-						
-						for(var l:int = 0; l < cplx_oref._args.length; l++)
-						{
-							ws_arg = cplx_oref._args[l];
-							
-							oref_node.appendChild(
-								<{ws_arg.name}>
-									{_args[j][ws_arg.name]}
-								</{ws_arg.name}>
-								);							
-						}
-						
-						add_node.appendChild(oref_node);
+						add_node.appendChild(createReference(ws_arg, _args[j]));
 					}
 					else
 					{
@@ -78,36 +64,15 @@ package be.wellconsidered.services.webservice
 			}
 			// SINGLE OBJECT
 			else
-			{		
-				/**
-				 * CLEAN THIS SHIT! 
-				 * IT NEEDS A TRANSPARENT CHECK (REF. WebServiceReponse CLASS)
-				 */
- 	
+			{		 	
 				for(var i:int = 0; i < _wsmethod._args.length; i++)
 				{
 					var wsa_arg:WebServiceArgument = _wsmethod._args[i];
 					
 					// EMPTY
 					if(wsa_arg.isReference())
-					{
-						// complex object
-						
-						var cplx_o:WebServiceComplexType =  _method_col.getComplexObject(wsa_arg.type);
-						var o_node:XML = <{wsa_arg.name} />;
-						
-						for(var k:int = 0; k < cplx_o._args.length; k++)
-						{
-							wsa_arg = cplx_o._args[k];
-							
-							o_node.appendChild(
-								<{wsa_arg.name}>
-									{_args[0][wsa_arg.name]}
-								</{wsa_arg.name}>
-								);							
-						}
-						
-						add_node.appendChild(o_node);
+					{					
+						add_node.appendChild(createReference(ws_arg, _args[i]));
 					}
 					else if(!_args[0][wsa_arg.name])
 					{
@@ -117,8 +82,6 @@ package be.wellconsidered.services.webservice
 					}
 					else
 					{
-						// object
-						
 						add_node.appendChild(
 							<{wsa_arg.name}>
 								{_args[0][wsa_arg.name]}
@@ -138,6 +101,32 @@ package be.wellconsidered.services.webservice
 			
 			// _call.prependChild("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 			// trace(_call);
+		}
+		
+		private function createReference(ws_arg:WebServiceArgument, curr_arg:*):XML
+		{
+			var cplx_oref:WebServiceComplexType =  _method_col.getComplexObject(ws_arg.type);
+			var oref_node:XML = <{ws_arg.name} />;
+			
+			for(var i:int = 0; i < cplx_oref._args.length; i++)
+			{
+				ws_arg = cplx_oref._args[i];
+				
+				if(ws_arg.isReference())
+				{
+					oref_node.appendChild(createReference(ws_arg, curr_arg[i]));
+				}
+				else
+				{
+					oref_node.appendChild(
+						<{ws_arg.name}>
+							{curr_arg[ws_arg.name]}
+						</{ws_arg.name}>
+						);
+				}							
+			}
+			
+			return oref_node;
 		}
 		
 		/**

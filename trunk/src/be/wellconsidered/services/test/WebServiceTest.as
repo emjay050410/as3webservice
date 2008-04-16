@@ -6,13 +6,13 @@
 
 package be.wellconsidered.services.test 
 {
-	import be.wellconsidered.services.events.OperationEvent;
 	import be.wellconsidered.services.Operation;
 	import be.wellconsidered.services.WebService;
+	import be.wellconsidered.services.events.OperationEvent;
 	
+	import flash.events.TimerEvent;
 	import flash.text.TextField;
 	import flash.utils.Timer;
-	import flash.events.TimerEvent;
 	
 	public class WebServiceTest
 	{	
@@ -45,7 +45,11 @@ package be.wellconsidered.services.test
 			
 			var tmp_5_tmr:Timer = new Timer(2000, 1);
 			tmp_5_tmr.addEventListener(TimerEvent.TIMER_COMPLETE,  function(evt:TimerEvent):void { testWeather(); });
-			tmp_5_tmr.start();					
+			tmp_5_tmr.start();				
+			
+			var tmp_6_tmr:Timer = new Timer(2500, 1);
+			tmp_6_tmr.addEventListener(TimerEvent.TIMER_COMPLETE,  function(evt:TimerEvent):void { testKBCF(); });
+			tmp_6_tmr.start();			
 		}
 		
 		public function testConcentra():void
@@ -67,7 +71,7 @@ package be.wellconsidered.services.test
 			o.addEventListener(OperationEvent.COMPLETE, onResult);
 			o.addEventListener(OperationEvent.FAILED, onFault);
 			
-			o.HelloWorld();
+			o.getAllJobs_lite("nl");
 		}	
 		
 		public function testMXR():void
@@ -119,7 +123,18 @@ package be.wellconsidered.services.test
 			o2.addEventListener(OperationEvent.FAILED, onFault);
 			
 			o2.GetWeatherByPlaceName("las vegas");
-		}			
+		}	
+		
+		public function testKBCF():void
+		{
+			var ws:WebService = new WebService("http://kbc.microsite.be/hetgatvankbc/ws/service.asmx?wsdl");
+			var o:Operation = new Operation(ws);
+			
+			o.addEventListener(OperationEvent.COMPLETE, onResult);
+			o.addEventListener(OperationEvent.FAILED, onFault);
+			
+			o.completeRegistration(new KBCFUser(), "0", "1");
+		}		
 		
 		//*****************************************************************************************//
 		
@@ -134,7 +149,7 @@ package be.wellconsidered.services.test
 		{
 			trace("-------- ONRESULT --------");
 			
-			tracing("DATA : " + e.data);
+			// tracing("DATA : " + e.data);
 			
 			traceObject(e.data);
 		}

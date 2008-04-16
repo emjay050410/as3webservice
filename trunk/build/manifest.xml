@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<componentPackage>
+	<component id="WebService" class="be.wellconsidered.services.WebService" />
+	<component id="Operation" class="be.wellconsidered.services.Operation" />
+	<component id="OperationEvent" class="be.wellconsidered.services.events.OperationEvent" />
+</componentPackage>
