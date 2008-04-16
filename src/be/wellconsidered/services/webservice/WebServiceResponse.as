@@ -156,7 +156,7 @@ package be.wellconsidered.services.webservice
 					
 				case "boolean":
 					
-					return Boolean(param_o);
+					return Boolean(String(param_o));
 						
 					break;	
 								

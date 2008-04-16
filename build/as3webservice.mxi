@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<macromedia-extension
+	 name="as3webservice"
+	 version="2.0.0"
+	 type="flash component">
+
+	<author name="Pieter Michels / wellconsidered" />
+
+	<products>
+		<product name="Flash" version="9" primary="true" />
+	</products>
+
+	<description>
+	<![CDATA[
+	http://code.google.com/p/as3webservice
+	]]>
+	</description>
+
+	<ui-access>
+	<![CDATA[
+	http://code.google.com/p/as3webservice
+	]]>
+	</ui-access>
+
+	<license-agreement>
+	<![CDATA[
+	
+	]]>
+	</license-agreement>
+
+	<files>
+		<file source="bin\as3webservice.swc" destination="$flash/Components/wellconsidered" />
+	</files>
+
+</macromedia-extension>
