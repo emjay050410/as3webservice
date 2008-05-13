@@ -1,5 +1,5 @@
 /**
- * @author Pieter Michels
+ * @author Pieter Michels / wellconsidered
  * 2007
  */
 
