@@ -103,13 +103,9 @@ package be.wellconsidered.services
 					{
 						qeue_arr[i].loadMethod();
 					}
-
-					// NOT NEEDED WE CAN JUST INIT ARRAY AGAIN SOME LINES BELOW
-					// qeue_arr.splice(i, 1);
 				}
 
-				qeue_arr = null;
-				qeue_arr = new Array();
+				qeue_arr = null; qeue_arr = new Array();
 			}
 		}
 

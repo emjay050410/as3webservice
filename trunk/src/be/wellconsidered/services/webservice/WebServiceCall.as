@@ -72,7 +72,9 @@ package be.wellconsidered.services.webservice
 					// EMPTY
 					if(wsa_arg.isReference())
 					{					
-						add_node.appendChild(createReference(ws_arg, _args[i]));
+						trace(wsa_arg);
+						add_node.appendChild(createReference(wsa_arg, _args[i]));
+						trace(wsa_arg);
 					}
 					else if(!_args[0][wsa_arg.name])
 					{
@@ -105,6 +107,7 @@ package be.wellconsidered.services.webservice
 		
 		private function createReference(ws_arg:WebServiceArgument, curr_arg:*):XML
 		{
+			trace(ws_arg + " - " + curr_arg);
 			var cplx_oref:WebServiceComplexType =  _method_col.getComplexObject(ws_arg.type);
 			var oref_node:XML = <{ws_arg.name} />;
 			
