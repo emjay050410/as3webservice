@@ -52,6 +52,17 @@ package be.wellconsidered.services.test
 			tmp_6_tmr.start();			
 		}
 		
+		public function testWalibiVertigoTrack():void
+		{
+			var w:WebService = new WebService("http://www.walibivertigo.be/ws/ws.asmx?wsdl");
+			var o:Operation = new Operation(w);
+			
+			o.addEventListener(OperationEvent.COMPLETE, onResult);
+			o.addEventListener(OperationEvent.FAILED, onFault);
+			
+			o.track({PAGECODE:"pagecode", USERGUID:"", SOURCECODE:"sourcecode", SESSIONGUID:"61438b78-bcc4-4120-94a9-b3b8c00fefb9", COOKIEGUID:"", LANG:"nl"});   
+		}
+		
 		public function testConcentra():void
 		{
 			var w:WebService = new WebService("http://webservices.microsite.be/concentra/ws/service.asmx?wsdl");
@@ -149,7 +160,7 @@ package be.wellconsidered.services.test
 		{
 			trace("-------- ONRESULT --------");
 			
-			// tracing("DATA : " + e.data);
+			tracing("DATA : " + e.data);
 			
 			traceObject(e.data);
 		}

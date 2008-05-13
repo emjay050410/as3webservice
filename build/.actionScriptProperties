@@ -2,7 +2,7 @@
 <actionScriptProperties mainApplicationPath="as3webservice.as" version="3">
 <compiler additionalCompilerArguments="-compute-digest=false" copyDependentFiles="false" enableModuleDebug="true" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersion="9.0.28" htmlPlayerVersionCheck="true" outputFolderPath="bin" strict="true" useApolloConfig="false" verifyDigests="true" warn="true">
 <compilerSourcePath>
-<compilerSourcePathEntry kind="1" linkType="1" path="C:/wellconsidered/0. Source/as3webservice/src"/>
+<compilerSourcePathEntry kind="1" linkType="1" path="/Users/pierot/Sites/projects/1. Source/as3webservice/src"/>
 </compilerSourcePath>
 <libraryPath defaultLinkType="1">
 <libraryPathEntry kind="4" path=""/>

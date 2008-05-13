@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flexLibProperties version="1">
-<includeClasses>
-<classEntry path="[source path] src/be.wellconsidered.services.Operation"/>
-<classEntry path="[source path] src/be.wellconsidered.services.webservice.types.WebServiceMethod"/>
-<classEntry path="[source path] src/be.wellconsidered.services.WebService"/>
-<classEntry path="[source path] src/be.wellconsidered.services.webservice.WebServiceResponse"/>
-<classEntry path="[source path] src/be.wellconsidered.services.webservice.WebServiceMethodCollection"/>
-<classEntry path="[source path] src/be.wellconsidered.services.events.OperationEvent"/>
-<classEntry path="[source path] src/be.wellconsidered.services.webservice.WebServiceCall"/>
-<classEntry path="[source path] src/be.wellconsidered.services.events.WebServiceMethodCollectionEvent"/>
-<classEntry path="[source path] src/be.wellconsidered.services.webservice.types.WebServiceComplexType"/>
-<classEntry path="[source path] src/be.wellconsidered.services.events.WebServiceEvent"/>
-<classEntry path="be.wellconsidered.services.test.KBCFUser"/>
-<classEntry path="[source path] src/be.wellconsidered.services.test.WebServiceTest"/>
-<classEntry path="[source path] src/be.wellconsidered.services.webservice.types.WebServiceMethodResponse"/>
-<classEntry path="[source path] src/be.wellconsidered.services.webservice.types.WebServiceArgument"/>
-<classEntry path="[source path] src/be.wellconsidered.services.webservice.types.WebServiceBinding"/>
-</includeClasses>
+<includeClasses/>
 <includeResources/>
 <namespaceManifests>
 <namespaceManifestEntry manifest="manifest.xml" namespace="http://www.wellconsidered.be"/>
