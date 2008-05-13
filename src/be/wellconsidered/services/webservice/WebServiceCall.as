@@ -72,9 +72,7 @@ package be.wellconsidered.services.webservice
 					// EMPTY
 					if(wsa_arg.isReference())
 					{					
-						trace(wsa_arg);
 						add_node.appendChild(createReference(wsa_arg, _args[i]));
-						trace(wsa_arg);
 					}
 					else if(!_args[0][wsa_arg.name])
 					{
