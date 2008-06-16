@@ -156,7 +156,7 @@ package be.wellconsidered.services.webservice
 					
 				case "boolean":
 					
-					return Boolean(String(param_o));
+					return param_o.toString().toLowerCase() == "true" ? true : false;
 						
 					break;	
 								
