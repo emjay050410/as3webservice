@@ -227,6 +227,7 @@ package be.wellconsidered.services.webservice
 					
 					for each(var m:XML in tmp_lst)
 					{				
+						// trace("0." + complex._name + " - " + m.@name + " - " + m.@type);
 						complex.addProp(new WebServiceArgument(m.@name, m.@type));
 					}	
 					
