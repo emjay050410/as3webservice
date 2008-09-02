@@ -26,7 +26,7 @@ package be.wellconsidered.services.test
 	{
 		private var output:TextField;
 		
-		public function WSTest(){ trace("Start Test"); }
+		public function WSTest(){ trace("Start Tests"); }
 
 		public function testAll():void
 		{
@@ -61,6 +61,21 @@ package be.wellconsidered.services.test
 			var tmp_8_tmr:Timer = new Timer(3500, 1);
 			tmp_8_tmr.addEventListener(TimerEvent.TIMER_COMPLETE,  function(evt:TimerEvent):void { testWalibiVertigoTrack(); });
 			tmp_8_tmr.start();			
+			
+			var tmp_9_tmr:Timer = new Timer(4000, 1);
+			tmp_9_tmr.addEventListener(TimerEvent.TIMER_COMPLETE,  function(evt:TimerEvent):void { testSimpleTypeCurrency(); });
+			tmp_9_tmr.start();			
+		}
+		
+		public function testSimpleTypeCurrency():void
+		{
+			var ws:WebService = new WebService("http://www.webservicex.net/CurrencyConvertor.asmx?WSDL"); 
+			var op:Operation = new Operation(ws); 
+				
+			op.addEventListener(OperationEvent.COMPLETE, onResult); 
+			op.addEventListener(OperationEvent.FAILED, onFault); 
+				
+			op.ConversionRate("AUD", "GBP"); 
 		}
 		
 		public function testPinueutEcardOld():void
@@ -195,9 +210,7 @@ package be.wellconsidered.services.test
 			trace(args);
 			
 			if(output != null)
-			{
 				output.appendText(args.toString() + "\n");
-			}
 		}
 	}
 }

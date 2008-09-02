@@ -1,5 +1,6 @@
 /**
  * @author Pieter Michels / wellconsidered
+ * pieter@wellconsidered.be
  *
  * Open source under the GNU Lesser General Public License (http://www.opensource.org/licenses/lgpl-license.php)
  * Copyright © 2008 Pieter Michels / wellconsidered

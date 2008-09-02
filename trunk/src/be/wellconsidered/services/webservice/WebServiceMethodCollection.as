@@ -67,7 +67,7 @@ package be.wellconsidered.services.webservice
 			
 			if(types_xml.children().length() > 0 && types_schema_xml.s_nms::element.length() > 0)
 			{
-				// METHODS / COMPLEX TYPES	
+				// METHODS / COMPLEX TYPES
 				extractMethods(types_schema_xml, s_nms);
 			}
 			else
@@ -77,6 +77,7 @@ package be.wellconsidered.services.webservice
 			}
 			
 			extractComplexType(types_schema_xml, s_nms);
+			extractSimpleType(types_schema_xml, s_nms);
 			
 			// BINDINGS
 			extractBindings(bindings_xml[0], bindings_xml.namespace());
@@ -224,6 +225,23 @@ package be.wellconsidered.services.webservice
 				{/*trace(e.message);*/}
 			}			
 		}
+		
+		private function extractSimpleType(param_schema_xml:XML, param_nms:Namespace):void
+		{
+			for each(var i:XML in param_schema_xml.param_nms::simpleType)
+			{
+				try
+				{
+					var complex:WebServiceComplexType = new WebServiceComplexType(i.@name);
+					
+					// complex.addProp(new WebServiceArgument(m.@name, m.@type, true));	
+					
+					_complex_arr.push(complex);
+				}
+				catch(e:Error)
+				{/*trace(e.message);*/}
+			}			
+		}		
 		
 		private function extractComplexType(param_schema_xml:XML, param_nms:Namespace):void
 		{

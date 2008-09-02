@@ -84,7 +84,7 @@ package be.wellconsidered.services
 			}
 			catch (e:Error)
 			{
-				trace("ERROR: Webservice returned faulty XML " + e.getStackTrace() );
+				trace("ERROR: Webservice returned Faulty XML " + e.getStackTrace() );
 
 				dispatchEvent(new OperationEvent(OperationEvent.FAILED, e));
 			}
@@ -107,9 +107,7 @@ package be.wellconsidered.services
 			if(ws.loaded)
 			{
 				if(ws.getMethodCollection().methodExists(method_name))
-				{
 					loadMethod();
-				}
 			}
 			else
 			{

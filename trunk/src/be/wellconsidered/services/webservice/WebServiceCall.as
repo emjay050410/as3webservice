@@ -16,6 +16,8 @@ package be.wellconsidered.services.webservice
 {
 	import be.wellconsidered.services.webservice.types.*;
 	
+	import mx.logging.Log;
+	
 	public class WebServiceCall
 	{
 		private var _call:XML;
@@ -56,7 +58,7 @@ package be.wellconsidered.services.webservice
 			{
 				for(var j:int = 0; j < _wsmethod._args.length; j++)
 				{
-					var ws_arg:WebServiceArgument = _wsmethod._args[j];
+					var ws_arg:WebServiceArgument = _wsmethod._args[j] as WebServiceArgument;
 					
 					if(ws_arg.isReference())
 					{
@@ -117,44 +119,54 @@ package be.wellconsidered.services.webservice
 		private function createReference(ws_arg:WebServiceArgument, curr_arg:*):XML
 		{
 			// trace(ws_arg + " (" + ws_arg.name + ", " + ws_arg.type + ") - " + curr_arg);
+			// for(var s:* in curr_arg){ trace(s + " - " + curr_arg[s]); }
 			
 			var cplx_oref:WebServiceComplexType = _method_col.getComplexObject(ws_arg.type);
 			var oref_node:XML = <{ws_arg.name} />;
 			
-			for(var i:int = 0; i < cplx_oref._args.length; i++)
+			if(cplx_oref._args.length > 0)
 			{
-				ws_arg = cplx_oref._args[i];
-				
-				if(ws_arg.isReference())
-				{					
-					oref_node.appendChild(createReference(ws_arg, curr_arg[ws_arg.name]));
-				}
-				else
+				for(var i:int = 0; i < cplx_oref._args.length; i++)
 				{
-					if(ws_arg.name == "anyType")
-					{
-						var aNode:XML = <{ws_arg.name} />;
-						
-						for(var k:String in curr_arg[i])
-						{
-							aNode.appendChild(
-								<{k}>
-									{curr_arg[i][k]}
-								</{k}>
-								);
-						}
-						
-						oref_node.appendChild(aNode);
+					ws_arg = cplx_oref._args[i];
+					
+					if(ws_arg.isReference())
+					{					
+						oref_node.appendChild(createReference(ws_arg, curr_arg[ws_arg.name]));
 					}
 					else
 					{
-						oref_node.appendChild(
-							<{ws_arg.name}>
-								{curr_arg[ws_arg.name]}
-							</{ws_arg.name}>
-							);
-					}
-				}							
+						if(ws_arg.name == "anyType")
+						{
+							var aNode:XML = <{ws_arg.name} />;
+							
+							for(var k:String in curr_arg[i])
+							{
+								aNode.appendChild(
+									<{k}>
+										{curr_arg[i][k]}
+									</{k}>
+									);
+							}
+							
+							oref_node.appendChild(aNode);
+						}
+						else
+						{
+							oref_node.appendChild(
+								<{ws_arg.name}>
+									{curr_arg[ws_arg.name]}
+								</{ws_arg.name}>
+								);
+						}
+					}							
+				}
+			}
+			else
+			{
+				// trace("Should be SimpleType");
+				
+				oref_node.appendChild(curr_arg);
 			}
 			
 			return oref_node;

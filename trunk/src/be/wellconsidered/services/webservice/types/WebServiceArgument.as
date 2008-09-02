@@ -19,10 +19,14 @@ package be.wellconsidered.services.webservice.types
 		private var _name:String;
 		private var _type:String;
 		
-		public function WebServiceArgument(param_name:String, param_type:String = "")
+		private var _isSimpleType:Boolean = false;
+		
+		public function WebServiceArgument(param_name:String, param_type:String = "", isSimpleType:Boolean = false)
 		{
 			_name = param_name
 			_type = param_type
+			
+			_isSimpleType = isSimpleType;
 		}	
 		
 		/**
@@ -43,6 +47,16 @@ package be.wellconsidered.services.webservice.types
 		public function get type():String
 		{
 			return _type.split(":")[1];
+		}
+		
+		/**
+		* Is SimpleType?
+		* 
+		* @return	True if SimpleType
+		*/			
+		public function isSimpleType():Boolean
+		{
+			return _isSimpleType;
 		}
 		
 		/**

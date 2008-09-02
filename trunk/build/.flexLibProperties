@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flexLibProperties version="1">
 <includeClasses>
+<classEntry path="be.wellconsidered.services.webservice.types.WebServiceComplexType"/>
+<classEntry path="be.wellconsidered.services.webservice.types.WebServiceArgument"/>
+<classEntry path="be.wellconsidered.services.webservice.WebServiceResponse"/>
+<classEntry path="be.wellconsidered.services.WebService"/>
+<classEntry path="be.wellconsidered.services.webservice.types.WebServiceBinding"/>
+<classEntry path="be.wellconsidered.services.events.OperationEvent"/>
 <classEntry path="be.wellconsidered.services.test.WSTest"/>
+<classEntry path="be.wellconsidered.services.webservice.types.WebServiceMethodResponse"/>
+<classEntry path="be.wellconsidered.services.events.WebServiceEvent"/>
+<classEntry path="be.wellconsidered.services.webservice.WebServiceMethodCollection"/>
+<classEntry path="be.wellconsidered.services.events.WebServiceMethodCollectionEvent"/>
+<classEntry path="be.wellconsidered.services.webservice.types.WebServiceMethod"/>
+<classEntry path="be.wellconsidered.services.Operation"/>
+<classEntry path="be.wellconsidered.services.webservice.WebServiceCall"/>
 </includeClasses>
 <includeResources/>
 <namespaceManifests>
-<namespaceManifestEntry manifest="manifest.xml" namespace="http://www.wellconsidered.be"/>
+<namespaceManifestEntry manifest="as3webservice-manifest.xml" namespace="http://www.wellconsidered.be"/>
 </namespaceManifests>
 </flexLibProperties>

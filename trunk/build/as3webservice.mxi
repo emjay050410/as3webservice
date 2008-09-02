@@ -12,19 +12,19 @@
 
 	<description>
 	<![CDATA[
-	http://code.google.com/p/as3webservice
+		http://code.google.com/p/as3webservice
 	]]>
 	</description>
 
 	<ui-access>
 	<![CDATA[
-	http://code.google.com/p/as3webservice
+		http://code.google.com/p/as3webservice
 	]]>
 	</ui-access>
 
 	<license-agreement>
 	<![CDATA[
-	
+		Open source under the GNU Lesser General Public License (http://www.opensource.org/licenses/lgpl-license.php)
 	]]>
 	</license-agreement>
 
