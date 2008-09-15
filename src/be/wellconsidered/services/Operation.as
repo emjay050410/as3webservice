@@ -16,14 +16,12 @@ package be.wellconsidered.services
 {
 	import be.wellconsidered.services.events.OperationEvent;
 	import be.wellconsidered.services.webservice.*;
-
+	
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
-	import flash.events.IOErrorEvent;
 	import flash.events.EventDispatcher;
-
+	import flash.events.IOErrorEvent;
 	import flash.net.*;
-
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 
@@ -59,19 +57,20 @@ package be.wellconsidered.services
 		{
 			var new_call:WebServiceCall = new WebServiceCall(method_name, ws.getMethodCollection(), ws.getMethodCollection().targetNameSpace, method_args);
 
-			var soap_action:String = ws.getMethodCollection().targetNameSpace;
-			var trailing_slash:Number = soap_action.lastIndexOf("/");
-			var b_slash:Boolean = (trailing_slash == -1 || trailing_slash < soap_action.length - 2);
-
-			soap_action += b_slash ? "/" + method_name : method_name;
-
 			// url_request.requestHeaders.push(new URLRequestHeader("Content-Type", "application/soap+xml"));
 			url_request.requestHeaders.push(new URLRequestHeader("Content-Type", "text/xml; charset=utf-8"));
-			url_request.requestHeaders.push(new URLRequestHeader("SOAPAction", soap_action));
+			url_request.requestHeaders.push(new URLRequestHeader("SOAPAction", createSoapAction(ws.getMethodCollection().targetNameSpace) + method_name));
 
 			url_request.data = new_call.call;
 
 			url_loader.load(url_request);
+		}
+		
+		private function createSoapAction(sAction:String):String
+		{
+			var isSlash:Boolean = (sAction.lastIndexOf("/") == -1 || sAction.lastIndexOf("/") < sAction.length - 2);
+
+			return sAction + (isSlash ? "/" : "");
 		}
 
 		private function onServiceLoaded(e:Event):void
@@ -110,9 +109,7 @@ package be.wellconsidered.services
 					loadMethod();
 			}
 			else
-			{
 				ws.addOperationToQeue(this);
-			}
 		}
 
 		/**
