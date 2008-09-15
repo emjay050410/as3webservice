@@ -18,14 +18,15 @@ package be.wellconsidered.services
 	import be.wellconsidered.services.events.WebServiceEvent;
 	import be.wellconsidered.services.events.WebServiceMethodCollectionEvent;
 	import be.wellconsidered.services.webservice.*;
-
+	
+	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IOErrorEvent;
 	import flash.events.SecurityErrorEvent;
 	import flash.net.*;
 
-	public class WebService extends EventDispatcher
+	public class WebService extends MovieClip
 	{
 		private var url_ws:String;
 		private var urllserv_desc:URLLoader;
@@ -110,9 +111,7 @@ package be.wellconsidered.services
 					// trace("QEUE (" + i + ") : " + qeue_arr[i].method);
 
 					if(method_col.methodExists(qeue_arr[i].method))
-					{
 						qeue_arr[i].loadMethod();
-					}
 				}
 
 				qeue_arr = null; qeue_arr = new Array();

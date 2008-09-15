@@ -151,10 +151,8 @@ package be.wellconsidered.services.webservice
 
 					if(m_message != null)
 					{
-						for each(var j:XML in m_message.param_nms::part)
-						{				
+						for each(var j:XML in m_message.param_nms::part)			
 							method.addArg(new WebServiceArgument(j.@name, j.@type));
-						}
 					}
 					
 					_methods_arr.push(method);					
@@ -171,10 +169,8 @@ package be.wellconsidered.services.webservice
 					
 					if(r_message != null)
 					{
-						for each(var k:XML in r_message.param_nms::part)
-						{				
+						for each(var k:XML in r_message.param_nms::part)			
 							response.addPar(new WebServiceArgument(k.@name, k.@type));
-						}
 					}
 					
 					_response_arr.push(response);					
@@ -201,10 +197,8 @@ package be.wellconsidered.services.webservice
 					{
 						var method:WebServiceMethod = new WebServiceMethod(i.@name);
 						
-						for each(var j:XML in tmp_lst)
-						{				
+						for each(var j:XML in tmp_lst)			
 							method.addArg(new WebServiceArgument(j.@name, j.@type));
-						}
 						
 						_methods_arr.push(method);
 					}
@@ -213,10 +207,8 @@ package be.wellconsidered.services.webservice
 						// RESPONSES
 						var response:WebServiceMethodResponse = new WebServiceMethodResponse(i.@name);
 						
-						for each(var k:XML in tmp_lst)
-						{				
+						for each(var k:XML in tmp_lst)			
 							response.addPar(new WebServiceArgument(k.@name, k.@type));
-						}
 						
 						_response_arr.push(response);						
 					}

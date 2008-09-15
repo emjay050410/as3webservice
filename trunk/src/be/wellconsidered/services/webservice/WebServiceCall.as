@@ -16,8 +16,6 @@ package be.wellconsidered.services.webservice
 {
 	import be.wellconsidered.services.webservice.types.*;
 	
-	import mx.logging.Log;
-	
 	public class WebServiceCall
 	{
 		private var _call:XML;
@@ -45,13 +43,9 @@ package be.wellconsidered.services.webservice
 			
 			// NAMESPACE OF NIET?
 			if(_method_col.getBindingObject(_method).getInputNamespace() != null)
-			{
 				add_node = <{"wc:" + _method} xmlns:wc={_method_col.getBindingObject(_method).getInputNamespace()} />
-			}
 			else
-			{
 				add_node = <{_method} xmlns={_tgtnms} />
-			}
 			
 			// LIST
 			if(_args.length > 1 || typeof(_args[0]) != "object")
@@ -61,9 +55,7 @@ package be.wellconsidered.services.webservice
 					var ws_arg:WebServiceArgument = _wsmethod._args[j] as WebServiceArgument;
 					
 					if(ws_arg.isReference())
-					{
 						add_node.appendChild(createReference(ws_arg, _args[j]));
-					}
 					else
 					{
 						add_node.appendChild(
@@ -130,10 +122,8 @@ package be.wellconsidered.services.webservice
 				{
 					ws_arg = cplx_oref._args[i];
 					
-					if(ws_arg.isReference())
-					{					
+					if(ws_arg.isReference())				
 						oref_node.appendChild(createReference(ws_arg, curr_arg[ws_arg.name]));
-					}
 					else
 					{
 						if(ws_arg.name == "anyType")
