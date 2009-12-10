@@ -2,7 +2,7 @@
  * @author Pieter Michels / wellconsidered
  *
  * Open source under the GNU Lesser General Public License (http://www.opensource.org/licenses/lgpl-license.php)
- * Copyright © 2008 Pieter Michels / wellconsidered
+ * Copyright © 2009 Pieter Michels / wellconsidered
  * 
  * This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License 
  * as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
@@ -24,6 +24,20 @@ package be.wellconsidered.services
 	import flash.net.*;
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
+	
+	/**
+	 *  Dispatched when Webservice call is completed
+	 *
+	 *  @eventType be.wellconsidered.services.events.OperationEvent.COMPLETE
+	 */
+	[Event(name="complete", type="be.wellconsidered.services.events.OperationEvent")]
+	
+	/**
+	 *  Dispatched when Webservice called generated an error on client-side but it will be most of the time a server-side issue
+	 *
+	 *  @eventType be.wellconsidered.services.events.OperationEvent.FAILED
+	 */
+	[Event(name="failed", type="be.wellconsidered.services.events.OperationEvent")]
 
 	dynamic public class Operation extends Proxy
 	{

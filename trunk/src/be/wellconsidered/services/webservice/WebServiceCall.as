@@ -2,7 +2,7 @@
  * @author Pieter Michels / wellconsidered
  *
  * Open source under the GNU Lesser General Public License (http://www.opensource.org/licenses/lgpl-license.php)
- * Copyright © 2008 Pieter Michels / wellconsidered
+ * Copyright © 2009 Pieter Michels / wellconsidered
  * 
  * This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License 
  * as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
@@ -110,7 +110,7 @@ package be.wellconsidered.services.webservice
 		
 		private function createReference(ws_arg:WebServiceArgument, curr_arg:*):XML
 		{
-			// trace(ws_arg + " (" + ws_arg.name + ", " + ws_arg.type + ") - " + curr_arg);
+			trace(ws_arg + " (" + ws_arg.name + ", " + ws_arg.type + ") - " + curr_arg);
 			// for(var s:* in curr_arg){ trace(s + " - " + curr_arg[s]); }
 			
 			var cplx_oref:WebServiceComplexType = _method_col.getComplexObject(ws_arg.type);
