@@ -2,7 +2,7 @@
  * @author Pieter Michels / wellconsidered
  *
  * Open source under the GNU Lesser General Public License (http://www.opensource.org/licenses/lgpl-license.php)
- * Copyright © 2008 Pieter Michels / wellconsidered
+ * Copyright © 2009 Pieter Michels / wellconsidered
  * 
  * This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License 
  * as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
@@ -44,9 +44,7 @@ package be.wellconsidered.services.webservice
 		* @param	XML object
 		*/
 		public function extract(param_xml:XML):void
-		{
-			// trace(param_xml);
-			
+		{	
 			var p_nms:Namespace = param_xml.namespace();
 			
 			var types_xml:XML = param_xml.p_nms::types[0];

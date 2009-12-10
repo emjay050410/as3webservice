@@ -7,7 +7,6 @@
 <classEntry path="be.wellconsidered.services.WebService"/>
 <classEntry path="be.wellconsidered.services.webservice.types.WebServiceBinding"/>
 <classEntry path="be.wellconsidered.services.events.OperationEvent"/>
-<classEntry path="be.wellconsidered.services.test.WSTest"/>
 <classEntry path="be.wellconsidered.services.webservice.types.WebServiceMethodResponse"/>
 <classEntry path="be.wellconsidered.services.events.WebServiceEvent"/>
 <classEntry path="be.wellconsidered.services.webservice.WebServiceMethodCollection"/>
